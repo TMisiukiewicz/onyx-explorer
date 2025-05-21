@@ -1,0 +1,98 @@
+body {
+    font-family: sans-serif;
+    margin: 0;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 1rem 0;
+    text-align: center;
+}
+
+main {
+    padding: 1rem;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.file-upload-container {
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.custom-file-upload {
+    border: 1px solid #ccc;
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+    background-color: #fff;
+    border-radius: 4px;
+}
+
+input[type="file"] {
+    display: none;
+}
+
+#onyx-data-container {
+    background-color: #fff;
+    padding: 1rem;
+    border-radius: 4px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.collapsible {
+    background-color: #eee;
+    color: #444;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 15px;
+    margin-top: 5px;
+    border-radius: 3px;
+}
+
+.collapsible:hover {
+    background-color: #ddd;
+}
+
+.collapsible::before {
+    content: '\25B6'; /* Right-pointing triangle */
+    color: #666;
+    display: inline-block;
+    margin-right: 6px;
+}
+
+.collapsible.active::before {
+    content: '\25BC'; /* Down-pointing triangle */
+}
+
+.content {
+    padding: 0 18px;
+    display: none;
+    overflow: hidden;
+    background-color: #f9f9f9;
+    border-left: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+}
+
+.item-count {
+    font-style: italic;
+    color: #777;
+    margin-left: 10px;
+}
+
+ul {
+    list-style-type: none;
+    padding-left: 20px;
+}
+
+li {
+    padding: 5px 0;
+} 

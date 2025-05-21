@@ -1,11 +1,14 @@
 :root {
-    --primary-color: #2563eb;
-    --primary-hover: #1d4ed8;
     --bg-color: #f8fafc;
     --text-color: #1e293b;
     --border-color: #e2e8f0;
     --item-bg: #ffffff;
     --item-hover: #f1f5f9;
+    --code-bg: #f8fafc;
+    --code-border: #e2e8f0;
+    --key-color: #2563eb;
+    --value-color: #1e293b;
+    --count-color: #64748b;
 }
 
 body {
@@ -43,14 +46,14 @@ h1 {
 }
 
 .file-upload-container:hover {
-    border-color: var(--primary-color);
+    border-color: var(--key-color);
     background-color: var(--item-hover);
 }
 
 .file-upload-label {
     display: inline-block;
     padding: 0.75rem 1.5rem;
-    background-color: var(--primary-color);
+    background-color: var(--key-color);
     color: white;
     border-radius: 6px;
     cursor: pointer;
@@ -59,7 +62,7 @@ h1 {
 }
 
 .file-upload-label:hover {
-    background-color: var(--primary-hover);
+    background-color: #1d4ed8;
 }
 
 #file-upload {
@@ -77,23 +80,23 @@ ul {
 }
 
 li {
-    margin: 0.5rem 0;
+    margin: 0;
 }
 
 .collapsible {
     width: 100%;
     text-align: left;
-    padding: 0.75rem 1rem;
-    background-color: var(--item-bg);
-    border: 1px solid var(--border-color);
-    border-radius: 6px;
+    padding: 0.5rem 1rem;
+    background-color: var(--code-bg);
+    border: 1px solid var(--code-border);
+    border-radius: 4px;
     cursor: pointer;
-    font-size: 0.95rem;
-    font-weight: 500;
+    font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+    font-size: 0.9rem;
     color: var(--text-color);
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    gap: 0.5rem;
     transition: all 0.2s ease;
 }
 
@@ -101,57 +104,72 @@ li {
     background-color: var(--item-hover);
 }
 
-.collapsible::after {
-    content: '▼';
-    font-size: 0.8rem;
+.collapsible::before {
+    content: '▶';
+    font-size: 0.7rem;
     transition: transform 0.2s ease;
+    color: var(--count-color);
+    display: inline-block;
+    width: 1rem;
+    text-align: center;
 }
 
-.collapsible.active::after {
-    transform: rotate(180deg);
+.collapsible.active::before {
+    transform: rotate(90deg);
+}
+
+.collapsible span {
+    color: var(--key-color);
+    flex: 1;
+}
+
+.collapsible .item-count {
+    color: var(--count-color);
+    font-size: 0.85rem;
+    font-weight: normal;
+    margin-left: auto;
 }
 
 .content {
     display: none;
-    padding: 0.5rem 0 0.5rem 1.5rem;
-    border-left: 2px solid var(--border-color);
+    padding: 0.25rem 0 0.25rem 1.5rem;
+    border-left: 2px solid var(--code-border);
     margin-left: 0.5rem;
     transition: all 0.2s ease;
 }
 
-.item-count {
-    font-size: 0.85rem;
-    color: #64748b;
-    font-weight: normal;
-    margin-left: 0.5rem;
+/* Collections group styling */
+li:has(> .collapsible:contains("Collections")) .collapsible {
+    background-color: var(--code-bg);
+    color: var(--text-color);
+    border: 1px solid var(--code-border);
+    font-weight: 600;
 }
 
 /* Non-collapsible items */
 li:not(:has(.collapsible)) {
-    padding: 0.5rem 1rem;
-    background-color: var(--item-bg);
-    border: 1px solid var(--border-color);
-    border-radius: 6px;
-    font-size: 0.95rem;
+    padding: 0.25rem 1rem;
+    background-color: var(--code-bg);
+    border: 1px solid var(--code-border);
+    border-radius: 4px;
+    font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+    font-size: 0.9rem;
+    color: var(--text-color);
+    margin: 0.25rem 0;
 }
 
-/* Collections group styling */
-li:has(> .collapsible:contains("Collections")) {
-    margin-bottom: 1.5rem;
+.key {
+    color: var(--key-color);
+    font-weight: 500;
 }
 
-li:has(> .collapsible:contains("Collections")) .collapsible {
-    background-color: var(--primary-color);
-    color: white;
-    border: none;
+.value {
+    color: var(--value-color);
 }
 
-li:has(> .collapsible:contains("Collections")) .collapsible:hover {
-    background-color: var(--primary-hover);
-}
-
-li:has(> .collapsible:contains("Collections")) .item-count {
-    color: rgba(255, 255, 255, 0.8);
+/* Remove the old arrow */
+.collapsible::after {
+    display: none;
 }
 
 .loading, .error {
@@ -170,23 +188,4 @@ li:has(> .collapsible:contains("Collections")) .item-count {
     background-color: #fee2e2;
     color: #dc2626;
     border: 1px solid #fecaca;
-}
-
-.key {
-    color: var(--primary-color);
-    font-weight: 500;
-}
-
-.value {
-    color: var(--text-color);
-}
-
-/* Improve spacing for nested items */
-.content ul {
-    margin-top: 0.5rem;
-}
-
-/* Add hover effect for non-collapsible items */
-li:not(:has(.collapsible)):hover {
-    background-color: var(--item-hover);
 } 

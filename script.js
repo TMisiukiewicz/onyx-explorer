@@ -49,6 +49,10 @@ document.addEventListener('DOMContentLoaded', () => {
         if (isLegacyCollection && isObject) {
             const count = Array.isArray(value) ? value.length : Object.keys(value).length;
             itemCountDisplay = ` <span class="item-count">(${count} items)</span>`;
+        } else if (Array.isArray(value)) {
+            itemCountDisplay = ` <span class="item-count">[${value.length}]</span>`;
+        } else if (isObject && !Array.isArray(value)) {
+            itemCountDisplay = ` <span class="item-count">{${Object.keys(value).length}}</span>`;
         }
 
         if (isObject) {
